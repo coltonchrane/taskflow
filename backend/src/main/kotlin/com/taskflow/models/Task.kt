@@ -15,6 +15,8 @@ data class Task(
     val title: String,
     val description: String? = null,
     val status: String = "pending",
+    val priority: Int = 0,
+    val dueDate: LocalDateTime? = null,
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime = LocalDateTime.now()
 )
