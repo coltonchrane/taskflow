@@ -27,16 +27,26 @@ Ensure you have the following installed:
 - **Android Studio & SDK** (for Android development)
 
 ## 🚀 Getting Started
-
 ### Quick Start with Docker
 The easiest way to get the entire stack running is using Docker Compose:
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Frontend**: [http://localhost](http://localhost) (Port 80)
 - **Backend API**: [http://localhost:8080](http://localhost:8080)
 - **Database**: PostgreSQL on `localhost:5432`
+
+---
+
+## ⚙️ CI/CD
+
+This project uses **GitHub Actions** for Continuous Integration. Every push and pull request to the `main` branch triggers:
+- **Backend**: Build and Spock tests.
+- **Frontend**: Build and Vitest tests.
+- **Android**: Build (assembleDebug) and unit tests.
+
+The configuration is located in [`.github/workflows/ci.yml`](./.github/workflows/ci.yml).
 
 ### Database & Migrations
 We use **Flyway** for database migrations.
