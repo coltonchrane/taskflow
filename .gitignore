@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+build/
+*/build/
+# Local configuration file
+local.properties
+.properties
+
+# Misc
+*.log
+*.class
+*.jar
+*.war
+# Kotlin
+*.kt
+*.kts
+# Java
+*.class
+# Node.js
+node_modules/
+# React
+/build/
+/.env
+
+# Android Studio
+*.iml
+*.idea/
+*.apk
+*.ap_
