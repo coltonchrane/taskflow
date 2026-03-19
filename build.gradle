@@ -1,0 +1,20 @@
+plugins {
+    id "io.micronaut.application" version "1.0.0"
+    id "io.micronaut.graal" version "1.0.0"
+}
+
+micronaut {
+    version "3.4.0"
+    runtime "netty"
+    testFramework "spock"
+}
+
+dependencies {
+    implementation("io.micronaut:micronaut-runtime")
+    implementation("ch.qos.logback:logback-classic")
+    testImplementation("io.micronaut.test:micronaut-test-spock")
+}
+
+application {
+    mainClass = "com.example.Application"
+}
