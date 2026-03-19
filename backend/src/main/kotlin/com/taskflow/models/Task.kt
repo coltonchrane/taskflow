@@ -1,17 +1,20 @@
 package com.taskflow.models
 
+import io.micronaut.data.annotation.GeneratedValue
+import io.micronaut.data.annotation.Id
+import io.micronaut.data.annotation.MappedEntity
 import java.time.LocalDateTime
 
+@MappedEntity("tasks")
 data class Task(
-    val id: String,
-    val projectId: String,
+    @field:Id
+    @field:GeneratedValue(GeneratedValue.Type.IDENTITY)
+    val id: Long? = null,
+    val projectId: Long,
+    val assignedTo: Long? = null,
     val title: String,
-    val description: String,
-    val status: String,
-    val priority: String,
-    val assignedTo: String,
-    val createdBy: String,
-    val dueDate: LocalDateTime,
+    val description: String? = null,
+    val status: String = "pending",
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime = LocalDateTime.now()
 )

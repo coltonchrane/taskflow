@@ -1,11 +1,12 @@
 package com.taskflow.models
 
+import java.time.LocalDateTime
+
 data class Project(
-    val id: Long,
+    val id: Long? = null,
     val name: String,
-    val description: String,
+    val description: String? = null,
     val ownerId: Long,
-    val color: String,
-    val createdAt: String,
-    val updatedAt: String
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+    val updatedAt: LocalDateTime = LocalDateTime.now()
 )
