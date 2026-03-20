@@ -12,11 +12,6 @@ local.properties
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
 *.war
-# Kotlin
-*.kt
-*.kts
-# Java
-*.class
 
 # Node.js
 node_modules/
