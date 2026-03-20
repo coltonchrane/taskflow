@@ -4,6 +4,7 @@ plugins {
     id "org.jetbrains.kotlin.plugin.allopen"
     id "io.micronaut.application"
     id "com.github.johnrengelman.shadow"
+    id "org.flywaydb.flyway" version "9.22.3"
 }
 
 version = "0.1"
@@ -17,6 +18,13 @@ micronaut {
         incremental(true)
         annotations("com.taskflow.*")
     }
+}
+
+flyway {
+    url = "jdbc:postgresql://localhost:5432/taskflow"
+    user = "user"
+    password = "password"
+    locations = ["filesystem:src/main/resources/db/migration"]
 }
 
 dependencies {

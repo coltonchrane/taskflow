@@ -1,0 +1,19 @@
+micronaut:
+  application:
+    name: taskflow-backend
+  server:
+    port: 8080
+
+datasources:
+  default:
+    url: ${DATASOURCES_DEFAULT_URL:jdbc:postgresql://localhost:5432/taskflow}
+    username: ${DATASOURCES_DEFAULT_USERNAME:user}
+    password: ${DATASOURCES_DEFAULT_PASSWORD:password}
+    driverClassName: org.postgresql.Driver
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+      locations:
+        - classpath:db/migration

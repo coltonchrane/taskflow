@@ -49,13 +49,21 @@ This project uses **GitHub Actions** for Continuous Integration. Every push and 
 The configuration is located in [`.github/workflows/ci.yml`](./.github/workflows/ci.yml).
 
 ### Database & Migrations
-We use **Flyway** for database migrations.
-- **Schema**: Located in `backend/src/main/resources/db/migration`.
-- **Seed Data**: Located in `backend/src/main/resources/db/seed/seed_data.sql`.
 
-To run migrations with seed data for local testing:
+We use **Flyway** for database migrations.
+- **Schema & Seed Data**: Located in `backend/src/main/resources/db/migration`.
+- **Naming**: Flyway migrations follow the naming convention `V<Version>__<Description>.sql` (e.g., `V1__Initial_Schema.sql`, `V3__Seed_Data.sql`).
+
+To run migrations for local testing:
 ```bash
-./gradlew flywayMigrate -Dflyway.locations=classpath:db/migration,classpath:db/seed
+./gradlew :backend:flywayMigrate
+```
+
+The Micronaut application also runs migrations automatically on startup using the settings in `backend/src/main/resources/application.yml`.
+
+To check the current status of migrations:
+```bash
+./gradlew :backend:flywayInfo
 ```
 (Note: You may need to configure your local DB connection in `backend/build.gradle` or via environment variables).
 
