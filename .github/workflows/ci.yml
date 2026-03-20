@@ -10,6 +10,20 @@ jobs:
   backend:
     name: Backend Build & Test
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: taskflow
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
@@ -19,7 +33,15 @@ jobs:
           distribution: 'temurin'
           cache: gradle
       - name: Build and Test Backend
-        run: ./gradlew :backend:test
+        run: ./gradlew clean :backend:test
+        env:
+          DATASOURCES_DEFAULT_URL: jdbc:postgresql://localhost:5432/taskflow
+          DATASOURCES_DEFAULT_USERNAME: user
+          DATASOURCES_DEFAULT_PASSWORD: password
+          DATASOURCES_DEFAULT_DRIVER_CLASS_NAME: org.postgresql.Driver
+          FLYWAY_DATASOURCES_DEFAULT_ENABLED: 'true'
+          JPA_DEFAULT_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+          JPA_DEFAULT_PROPERTIES_HIBERNATE_HBM2DDL_AUTO: none
 
   frontend:
     name: Frontend Build & Test
