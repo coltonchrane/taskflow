@@ -12,7 +12,6 @@ local.properties
 *.jar
 !gradle/wrapper/gradle-wrapper.jar
 *.war
-
 # Node.js
 node_modules/
 # React
