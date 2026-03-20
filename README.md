@@ -6,7 +6,7 @@ A robust, full-stack collaborative task management platform designed for efficie
 
 TaskFlow is built with a modern multi-module architecture:
 
-- **[backend/](./backend/)**: A high-performance Kotlin API built with [Micronaut](https://micronaut.io/).
+- **[backend/](./backend/)**: A high-performance Kotlin API built with [Micronaut](https://micronaut.io/) and **Hibernate JPA**.
 - **[frontend/](./frontend/)**: A responsive web application built with [React](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/), and [Vite](https://vitejs.dev/).
 - **[android/](./android/)**: A native Android application written in Kotlin for mobile productivity.
 - **[Infrastructure](./docker-compose.yml)**: Fully containerized local development environment using Docker and PostgreSQL.
@@ -17,11 +17,12 @@ TaskFlow is built with a modern multi-module architecture:
 - **Collaborative Workspaces**: Work together with your team seamlessly.
 - **Cross-platform**: Access your tasks via Web or Android.
 - **Scalable Backend**: Built on Micronaut for low-latency and high-performance API calls.
+- **Rich Data Model**: Comprehensive tracking of projects, tasks, comments, labels, and activity logs.
 
 ## 📋 Prerequisites
 
 Ensure you have the following installed:
-- **JDK 17+** (for Backend and Android)
+- **JDK 17 or 21** (Backend supports JDK 21)
 - **Node.js 18+** & **npm/yarn** (for Frontend)
 - **Docker & Docker Compose** (for Infrastructure)
 - **Android Studio & SDK** (for Android development)
@@ -36,6 +37,17 @@ docker compose up --build
 - **Frontend**: [http://localhost](http://localhost) (Port 80)
 - **Backend API**: [http://localhost:8080](http://localhost:8080)
 - **Database**: PostgreSQL on `localhost:5432`
+
+---
+
+## ⚙️ Backend Technology Stack
+
+The backend has been modernized to use:
+- **Kotlin 1.9.23**: Latest stable version for improved performance and compiler stability.
+- **Micronaut 4.2.1**: A modern, JVM-based, full-stack framework for building modular, easily testable microservice and serverless applications.
+- **Hibernate JPA**: Robust Object-Relational Mapping (ORM) for complex data relationships.
+- **PostgreSQL**: Industry-standard relational database.
+- **Flyway**: Automated database migrations.
 
 ---
 
@@ -61,18 +73,12 @@ To run migrations for local testing:
 
 The Micronaut application also runs migrations automatically on startup using the settings in `backend/src/main/resources/application.yml`.
 
-To check the current status of migrations:
-```bash
-./gradlew :backend:flywayInfo
-```
-(Note: You may need to configure your local DB connection in `backend/build.gradle` or via environment variables).
-
 ---
 
 ### Manual Development Setup
 
 #### 1. Backend
-The backend uses **Micronaut 4.2.1** and requires **JDK 17**.
+The backend requires **JDK 17 or 21**.
 ```bash
 ./gradlew :backend:run
 ```
@@ -85,15 +91,13 @@ cd frontend
 npm install
 npm run dev
 ```
-The frontend will be available at `http://localhost:5173` (standard Vite port, though Docker maps it to 3000).
+The frontend will be available at `http://localhost:5173`.
 
 #### 3. Android
 The Android application has been updated to use **Compose 1.5.4** and **AndroidX**.
 1. Open the root directory in **Android Studio**.
 2. Sync Project with Gradle Files.
 3. Run on an Emulator or Physical Device.
-
-*Note: Ensure `gradle.properties` in the root directory contains `android.useAndroidX=true` and `android.enableJetifier=true`.*
 
 ## 🧪 Testing
 
@@ -102,7 +106,6 @@ We use [Spock Framework](https://spockframework.org/) for backend testing.
 ```bash
 ./gradlew :backend:test
 ```
-Tests are located in `backend/src/test/groovy/com/taskflow/controller/`.
 
 ### Frontend
 We use [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for frontend testing.
@@ -110,19 +113,7 @@ We use [Vitest](https://vitest.dev/) and [React Testing Library](https://testing
 cd frontend
 npm test
 ```
-Tests are co-located with components (e.g., `frontend/src/components/TaskList.test.tsx`).
 
 ### Android
-We have both local unit tests and instrumented tests.
-- **Unit Tests** (Run on JVM):
-  ```bash
-  ./gradlew :android:testDebugUnitTest
-  ```
-- **Instrumented Tests** (Run on device/emulator):
-  ```bash
-  ./gradlew :android:connectedDebugAndroidTest
-  ```
-Tests are located in `android/src/test/` and `android/src/androidTest/`.
-
-## 🤝 Contributing
-We welcome contributions! Please see our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on how to get started.
+- **Unit Tests**: `./gradlew :android:testDebugUnitTest`
+- **Instrumented Tests**: `./gradlew :android:connectedDebugAndroidTest`
