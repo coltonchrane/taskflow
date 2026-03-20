@@ -13,9 +13,9 @@ group = "com.taskflow"
 micronaut {
     version.set("4.2.1")
     runtime.set(io.micronaut.gradle.MicronautRuntime.NETTY)
-    testRuntime("spock")
+    testRuntime("junit5")
     processing {
-        incremental(true)
+        incremental(false)
         annotations("com.taskflow.*")
     }
 }
@@ -44,7 +44,11 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("io.micronaut:micronaut-http-client")
-    testImplementation("io.micronaut.test:micronaut-test-spock")
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("io.mockk:mockk:1.13.8")
+    testRuntimeOnly("com.h2database:h2")
 }
 
 
