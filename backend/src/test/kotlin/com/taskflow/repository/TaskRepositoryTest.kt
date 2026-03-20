@@ -33,9 +33,10 @@ class TaskRepositoryTest {
         userRepository.deleteAll()
 
         // Create dependencies
+        val uniqueEmail = "test_${System.nanoTime()}@example.com"
         testUser = User(
-            username = "testuser", 
-            email = "test@example.com", 
+            username = "testuser_${System.nanoTime()}", 
+            email = uniqueEmail, 
             password = "securePassword123"
         )
         testUser = userRepository.save(testUser)
