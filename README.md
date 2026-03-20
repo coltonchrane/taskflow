@@ -54,7 +54,7 @@ The backend has been modernized to use:
 ## ⚙️ CI/CD
 
 This project uses **GitHub Actions** for Continuous Integration. Every push and pull request to the `main` branch triggers:
-- **Backend**: Build and Spock tests.
+- **Backend**: Build and Micronaut tests (JUnit 5).
 - **Frontend**: Build and Vitest tests.
 - **Android**: Build (assembleDebug) and unit tests.
 
@@ -102,7 +102,7 @@ The Android application has been updated to use **Compose 1.5.4** and **AndroidX
 ## 🧪 Testing
 
 ### Backend
-We use [Spock Framework](https://spockframework.org/) for backend testing.
+We use [Micronaut Test](https://micronaut-projects.github.io/micronaut-test/latest/guide/) and [JUnit 5](https://junit.org/junit5/) with [MockK](https://mockk.io/) for backend testing.
 ```bash
 ./gradlew :backend:test
 ```
@@ -115,5 +115,8 @@ npm test
 ```
 
 ### Android
-- **Unit Tests**: `./gradlew :android:testDebugUnitTest`
-- **Instrumented Tests**: `./gradlew :android:connectedDebugAndroidTest`
+We use [JUnit](https://junit.org/junit4/) for unit tests and [AndroidX Test](https://developer.android.com/training/testing) for instrumented tests.
+```bash
+./gradlew :android:testDebugUnitTest
+./gradlew :android:connectedDebugAndroidTest
+```
