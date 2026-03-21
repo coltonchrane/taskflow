@@ -1,4 +1,4 @@
--- V3__Seed_Data.sql
+-- V2__Seed_Data.sql
 
 -- Insert Users
 INSERT INTO users (username, email, password) VALUES 

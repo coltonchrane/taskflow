@@ -13,8 +13,12 @@ class LabelRepositoryTest {
     @Inject
     lateinit var labelRepository: LabelRepository
 
+    @Inject
+    lateinit var taskRepository: TaskRepository
+
     @BeforeEach
     fun setup() {
+        taskRepository.deleteAll()
         labelRepository.deleteAll()
     }
 

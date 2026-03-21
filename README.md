@@ -63,15 +63,15 @@ The configuration is located in [`.github/workflows/ci.yml`](./.github/workflows
 ### Database & Migrations
 
 We use **Flyway** for database migrations.
-- **Schema & Seed Data**: Located in `backend/src/main/resources/db/migration`.
-- **Naming**: Flyway migrations follow the naming convention `V<Version>__<Description>.sql` (e.g., `V1__Initial_Schema.sql`, `V3__Seed_Data.sql`).
+- **Schema & Seed Data**: Located in [`backend/src/main/resources/db/migration`](./backend/src/main/resources/db/migration).
+- **Naming**: Flyway migrations follow the naming convention `V<Version>__<Description>.sql` (e.g., `V1__Initial_Schema.sql`, `V2__Seed_Data.sql`).
 
-To run migrations for local testing:
+To run migrations manually for local testing:
 ```bash
 ./gradlew :backend:flywayMigrate
 ```
 
-The Micronaut application also runs migrations automatically on startup using the settings in `backend/src/main/resources/application.yml`.
+**Note**: The Micronaut application is configured to run migrations automatically on startup. This is managed in [`backend/src/main/resources/application.yml`](./backend/src/main/resources/application.yml).
 
 ---
 

@@ -17,6 +17,10 @@ class CommentRepositoryTest {
     @Inject lateinit var taskRepository: TaskRepository
     @Inject lateinit var projectRepository: ProjectRepository
     @Inject lateinit var userRepository: UserRepository
+    @Inject lateinit var projectMemberRepository: ProjectMemberRepository
+    @Inject lateinit var attachmentRepository: AttachmentRepository
+    @Inject lateinit var taskActivityLogRepository: TaskActivityLogRepository
+    @Inject lateinit var labelRepository: LabelRepository
 
     private lateinit var testUser: User
     private lateinit var testProject: Project
@@ -24,8 +28,12 @@ class CommentRepositoryTest {
 
     @BeforeEach
     fun setup() {
+        attachmentRepository.deleteAll()
         commentRepository.deleteAll()
+        taskActivityLogRepository.deleteAll()
         taskRepository.deleteAll()
+        projectMemberRepository.deleteAll()
+        labelRepository.deleteAll()
         projectRepository.deleteAll()
         userRepository.deleteAll()
 
