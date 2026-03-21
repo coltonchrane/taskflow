@@ -19,7 +19,7 @@ data class ProjectMember(
     var user: User? = null,
 
     @Column(nullable = false)
-    var role: String,
+    var role: String = "",
 
     @Column(name = "created_at", updatable = false)
     var createdAt: LocalDateTime = LocalDateTime.now()

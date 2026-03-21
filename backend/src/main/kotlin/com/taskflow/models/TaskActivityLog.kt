@@ -19,7 +19,7 @@ data class TaskActivityLog(
     var user: User? = null,
 
     @Column(nullable = false)
-    var action: String,
+    var action: String = "",
 
     @Column(name = "old_value", columnDefinition = "TEXT")
     var oldValue: String? = null,

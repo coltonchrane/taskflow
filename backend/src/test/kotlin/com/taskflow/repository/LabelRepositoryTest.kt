@@ -1,26 +1,10 @@
 package com.taskflow.repository
 
 import com.taskflow.models.Label
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-@MicronautTest
-class LabelRepositoryTest {
-
-    @Inject
-    lateinit var labelRepository: LabelRepository
-
-    @Inject
-    lateinit var taskRepository: TaskRepository
-
-    @BeforeEach
-    fun setup() {
-        taskRepository.deleteAll()
-        labelRepository.deleteAll()
-    }
+class LabelRepositoryTest : BaseRepositoryTest() {
 
     @Test
     fun `should save and find label`() {

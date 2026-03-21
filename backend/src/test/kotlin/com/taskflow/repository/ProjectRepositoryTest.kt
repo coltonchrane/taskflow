@@ -2,41 +2,16 @@ package com.taskflow.repository
 
 import com.taskflow.models.Project
 import com.taskflow.models.User
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-@MicronautTest
-class ProjectRepositoryTest {
-
-    @Inject
-    lateinit var projectRepository: ProjectRepository
-
-    @Inject
-    lateinit var userRepository: UserRepository
-
-    @Inject lateinit var projectMemberRepository: ProjectMemberRepository
-    @Inject lateinit var taskRepository: TaskRepository
-    @Inject lateinit var commentRepository: CommentRepository
-    @Inject lateinit var attachmentRepository: AttachmentRepository
-    @Inject lateinit var taskActivityLogRepository: TaskActivityLogRepository
-    @Inject lateinit var labelRepository: LabelRepository
+class ProjectRepositoryTest : BaseRepositoryTest() {
 
     private lateinit var testUser: User
 
     @BeforeEach
     fun setup() {
-        attachmentRepository.deleteAll()
-        commentRepository.deleteAll()
-        taskActivityLogRepository.deleteAll()
-        taskRepository.deleteAll()
-        projectMemberRepository.deleteAll()
-        labelRepository.deleteAll()
-        projectRepository.deleteAll()
-        userRepository.deleteAll()
-
         val uniqueUsername = "owner_${System.nanoTime()}"
         val uniqueEmail = "owner_${System.nanoTime()}@example.com"
         testUser = User(

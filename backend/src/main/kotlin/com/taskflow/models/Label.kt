@@ -11,7 +11,7 @@ data class Label(
     var id: Long? = null,
 
     @Column(nullable = false, unique = true)
-    var name: String,
+    var name: String = "",
 
     @Column(length = 20)
     var color: String = "#000000",

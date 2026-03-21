@@ -11,7 +11,7 @@ data class Project(
     var id: Long? = null,
 
     @Column(nullable = false)
-    var name: String,
+    var name: String = "",
 
     @Column(columnDefinition = "TEXT")
     var description: String? = null,

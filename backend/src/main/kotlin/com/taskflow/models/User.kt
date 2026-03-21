@@ -11,13 +11,13 @@ data class User(
     var id: Long? = null,
 
     @Column(nullable = false, unique = true)
-    var username: String,
+    var username: String = "",
 
     @Column(nullable = false, unique = true)
-    var email: String,
+    var email: String = "",
 
     @Column(nullable = false)
-    var password: String,
+    var password: String = "",
 
     @Column(name = "created_at", updatable = false)
     var createdAt: LocalDateTime = LocalDateTime.now(),

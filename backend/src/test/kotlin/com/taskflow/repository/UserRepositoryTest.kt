@@ -2,36 +2,11 @@ package com.taskflow.repository
 
 import com.taskflow.models.User
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 @MicronautTest
-class UserRepositoryTest {
-
-    @Inject
-    lateinit var userRepository: UserRepository
-
-    @Inject lateinit var projectRepository: ProjectRepository
-    @Inject lateinit var projectMemberRepository: ProjectMemberRepository
-    @Inject lateinit var taskRepository: TaskRepository
-    @Inject lateinit var commentRepository: CommentRepository
-    @Inject lateinit var attachmentRepository: AttachmentRepository
-    @Inject lateinit var taskActivityLogRepository: TaskActivityLogRepository
-    @Inject lateinit var labelRepository: LabelRepository
-
-    @BeforeEach
-    fun setup() {
-        attachmentRepository.deleteAll()
-        commentRepository.deleteAll()
-        taskActivityLogRepository.deleteAll()
-        taskRepository.deleteAll()
-        projectMemberRepository.deleteAll()
-        labelRepository.deleteAll()
-        projectRepository.deleteAll()
-        userRepository.deleteAll()
-    }
+class UserRepositoryTest : BaseRepositoryTest() {
 
     @Test
     fun `should save and find user`() {

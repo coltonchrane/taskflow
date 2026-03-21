@@ -19,7 +19,7 @@ data class Task(
     var assignedTo: User? = null,
 
     @Column(nullable = false)
-    var title: String,
+    var title: String = "",
 
     @Column(columnDefinition = "TEXT")
     var description: String? = null,

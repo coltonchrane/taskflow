@@ -19,7 +19,7 @@ data class Comment(
     var user: User? = null,
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    var content: String,
+    var content: String = "",
 
     @Column(name = "created_at", updatable = false)
     var createdAt: LocalDateTime = LocalDateTime.now()

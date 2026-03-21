@@ -4,23 +4,11 @@ import com.taskflow.models.Comment
 import com.taskflow.models.Project
 import com.taskflow.models.Task
 import com.taskflow.models.User
-import io.micronaut.test.extensions.junit5.annotation.MicronautTest
-import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-@MicronautTest
-class CommentRepositoryTest {
-
-    @Inject lateinit var commentRepository: CommentRepository
-    @Inject lateinit var taskRepository: TaskRepository
-    @Inject lateinit var projectRepository: ProjectRepository
-    @Inject lateinit var userRepository: UserRepository
-    @Inject lateinit var projectMemberRepository: ProjectMemberRepository
-    @Inject lateinit var attachmentRepository: AttachmentRepository
-    @Inject lateinit var taskActivityLogRepository: TaskActivityLogRepository
-    @Inject lateinit var labelRepository: LabelRepository
+class CommentRepositoryTest : BaseRepositoryTest() {
 
     private lateinit var testUser: User
     private lateinit var testProject: Project
@@ -28,15 +16,6 @@ class CommentRepositoryTest {
 
     @BeforeEach
     fun setup() {
-        attachmentRepository.deleteAll()
-        commentRepository.deleteAll()
-        taskActivityLogRepository.deleteAll()
-        taskRepository.deleteAll()
-        projectMemberRepository.deleteAll()
-        labelRepository.deleteAll()
-        projectRepository.deleteAll()
-        userRepository.deleteAll()
-
         val uniqueEmail = "commenter_${System.nanoTime()}@e.com"
         testUser = userRepository.save(User(username = "commenter_${System.nanoTime()}", email = uniqueEmail, password = "p"))
         testProject = projectRepository.save(Project(name = "P1", owner = testUser))

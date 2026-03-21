@@ -15,7 +15,7 @@ data class Attachment(
     var task: Task? = null,
 
     @Column(name = "file_path", nullable = false)
-    var filePath: String,
+    var filePath: String = "",
 
     @Column(name = "uploaded_at", updatable = false)
     var uploadedAt: LocalDateTime = LocalDateTime.now()
