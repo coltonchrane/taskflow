@@ -101,6 +101,12 @@ The Android application has been updated to use **Compose 1.5.4** and **AndroidX
 
 ## 🧪 Testing
 
+### Unified Testing
+To run all tests (Backend, Frontend, and Android) with a single command from the root:
+```bash
+./test.sh
+```
+
 ### Backend
 We use [Micronaut Test](https://micronaut-projects.github.io/micronaut-test/latest/guide/) and [JUnit 5](https://junit.org/junit5/) with [MockK](https://mockk.io/) for backend testing.
 ```bash

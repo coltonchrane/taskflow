@@ -86,6 +86,30 @@ class TaskRepositoryTest {
     }
 
     @Test
+    fun `should find tasks by projectId`() {
+        val task1 = Task(title = "Project 1 Task 1", project = testProject)
+        val task2 = Task(title = "Project 1 Task 2", project = testProject)
+        
+        // Create another project
+        val otherProject = Project(
+            name = "Other Project", 
+            owner = testUser
+        )
+        val savedOtherProject = projectRepository.save(otherProject)
+        val otherTask = Task(title = "Project 2 Task", project = savedOtherProject)
+        
+        taskRepository.saveAll(listOf(task1, task2, otherTask))
+
+        val project1Tasks = taskRepository.findByProjectId(testProject.id!!).toList()
+        assertEquals(2, project1Tasks.size)
+        assertTrue(project1Tasks.all { it.project?.id == testProject.id })
+        
+        val project2Tasks = taskRepository.findByProjectId(savedOtherProject.id!!).toList()
+        assertEquals(1, project2Tasks.size)
+        assertEquals("Project 2 Task", project2Tasks[0].title)
+    }
+
+    @Test
     fun `should update existing task`() {
         val task = Task(title = "Original Title", project = testProject)
         val savedTask = taskRepository.save(task)

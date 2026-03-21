@@ -8,8 +8,14 @@ import io.micronaut.http.annotation.*
 @Controller("/tasks")
 class TaskController(private val taskService: TaskService) {
 
-    @Get("/")
-    fun listTasks(): Iterable<Task> = taskService.findAll()
+    @Get("/{?projectId}")
+    fun listTasks(@QueryValue projectId: Long?): Iterable<Task> {
+        return if (projectId != null) {
+            taskService.findByProjectId(projectId)
+        } else {
+            taskService.findAll()
+        }
+    }
 
     @Get("/{id}")
     fun getTask(id: Long): HttpResponse<Task> {

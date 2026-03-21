@@ -16,14 +16,25 @@ class TaskControllerTest {
     private val taskController = TaskController(taskService)
 
     @Test
-    fun `listTasks should return all tasks`() {
+    fun `listTasks should return all tasks when projectId is null`() {
         val tasks = listOf(Task(id = 1, title = "Task 1"), Task(id = 2, title = "Task 2"))
         every { taskService.findAll() } returns tasks
 
-        val result = taskController.listTasks()
+        val result = taskController.listTasks(null)
 
         assertEquals(tasks, result.toList())
         verify(exactly = 1) { taskService.findAll() }
+    }
+
+    @Test
+    fun `listTasks should return filtered tasks when projectId is provided`() {
+        val tasks = listOf(Task(id = 1, title = "Task 1"))
+        every { taskService.findByProjectId(1L) } returns tasks
+
+        val result = taskController.listTasks(1L)
+
+        assertEquals(tasks, result.toList())
+        verify(exactly = 1) { taskService.findByProjectId(1L) }
     }
 
     @Test

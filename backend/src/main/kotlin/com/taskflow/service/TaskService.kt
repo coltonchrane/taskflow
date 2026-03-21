@@ -10,6 +10,8 @@ open class TaskService(private val taskRepository: TaskRepository) {
 
     fun findAll(): Iterable<Task> = taskRepository.findAll()
 
+    fun findByProjectId(projectId: Long): Iterable<Task> = taskRepository.findByProjectId(projectId)
+
     fun findById(id: Long): Task? = taskRepository.findById(id).orElse(null)
 
     fun save(task: Task): Task {
