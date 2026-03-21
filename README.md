@@ -23,7 +23,7 @@ TaskFlow is built with a modern multi-module architecture:
 
 Ensure you have the following installed:
 - **JDK 17 or 21** (Backend supports JDK 21)
-- **Node.js 18+** & **npm/yarn** (for Frontend)
+- **Node.js 20+** & **npm/yarn** (for Frontend)
 - **Docker & Docker Compose** (for Infrastructure)
 - **Android Studio & SDK** (for Android development)
 
